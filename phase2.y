@@ -143,6 +143,18 @@ Function:     Function IDENTIFIER SEMICOLON BEGIN_PAR Declaration SEMICOLON END_
 Program:    Function Program
             {printf("Program->Function Program\n");}
             ;
+            
+%%
+main(int argc, char **argv)
+{
+  if(argc >= 2){
+
+	yyin = stdin;
+
+  } 
+
+  yyparse();
+}
                 
 
     
