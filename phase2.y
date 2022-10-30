@@ -38,3 +38,112 @@ void yyerror(const char *s);
 
 %%
 
+Comp:   LESST
+        {printf("Comp->LESST\n");}
+        | LESSTQ
+        {printf("Comp->LESSTQ\n");}
+        | GREATT
+        {printf("Comp->GREATT\n");}
+        | GREATTEQ
+        {printf("Comp->GREATTEQ\n");}
+        | EQUIV
+        {printf("Comp->EQUUIV\n");}
+        ;
+        
+Var:    IDENTIFIER
+        {printf("Var->IDENTIFIER\n");}
+        | IDENTIFIER L_SQUARE_BRACKET Expression R_SQUARE_BRACKET
+        {printf("Var->IDENTIFIER L_SQUARE_BRACKET Expression R_SQUARE_BRACKET\n");}
+        ;
+        
+Term:   Var
+        {printf("Term->Var\n");}
+        | DIGITS
+        {printf("Term->DIGITS\n");}
+        | NEG DIGITS
+        {printf("Term->NEG DIGITS\n");}
+        | NEG L_PAREN Expression R_PAREN
+        {printf("Term->NEG L_PAREN Expression R_PAREN\n");}
+        | L_PAREN Expression R_PAREN
+        {printf("Term->L_PAREN Expression R_PAREN\n");}
+        | IDENTIFIER L_PAREN Expression R_PAREN
+        {printf("Term->IDENTIFIER L_PAREN Expression R_PAREN\n");}
+        ;
+        
+Mult_Exp:   Term MULT Mult_Exp
+            {printf("Mult_Exp->Term MULT Mult_Exp\n");}
+            | Term DIV Mult_Exp
+            {printf("Mult_Exp->Term DIV Mult_Exp\n");}
+            | Term MOD Mult_Exp
+            {printf("Mult_Exp->Term MOD Mult_Exp\n");}
+            ;
+            
+Expression:   Mult_Exp ADD Expression
+              {printf("Expression->Mult_Exp ADD Expression\n");}
+              | Mult_Exp SUB Expression
+              {printf("Expression->Mult_Exp SUB Expression\n");}
+              ;
+              
+Bool_Exp:   Relation_Expression
+            {printf("Bool_Exp->Relation_Expression\n");}
+            | Bool_Exp OR Relation_Exp
+            {printf("Bool_Exp->Bool_Exp OR Relation_Exp\n");}
+            ;
+            
+Relation_Exp:   NOT Expression Comp Expression
+                {printf("Relation_Exp->NOT Expression Comp Expression\n");}
+                | Expression Comp Expression
+                {printf("Relation_Exp->Expression Comp Expression\n");}
+                | TRU
+                {printf("Relation_Exp->TRU\n");}
+                | FAL
+                {printf("Relation_Exp->FAL\n");}
+                | L_PAREN Bool_Exp R_Paren
+                {printf("Relation_Exp->L_PAREN Bool_Exp R_Paren\n");}
+                | Relation_Exp AND Relation_Exp
+                {printf("Relation_Exp->Relation_Exp AND Relation_Exp\n");}
+                ;
+                
+Statement:     Var ASSIGN Expression SEMICOLON
+               {printf("Statement->Var ASSIGN Expression SEMICOLON\n");}
+               | IF Bool_Exp THEN Statment SEMICOLON ENDIF SEMICOLON
+               {printf("Statement->IF Bool_Exp THEN Statment SEMICOLON ENDIF SEMICOLON\n");}                       
+               | IF Bool_Exp THEN Statement SEMICOLON ELSEIF Statement SEMICOLON
+               {printf("Statement->IF Bool_Exp THEN Statment SEMICOLON ELSEIF Statement SEMICOLON\n");}
+               | Loop_Statement SEMICOLON
+               {printf("Statement->Loop_Statement SEMICOLON\n");}
+               | READ Var SEMICOLON
+               {printf("Statement->READ Var SEMICOLON\n");}
+               | WRITE Var SEMICOLON
+               {printf("Statement->WRITE Var SEMICOLON\n");}
+               | CONTINUE SEMICOLON
+               {printf("Statement->CONTINUE SEMICOLON\n");}
+               | BREAK SEMICOLON
+               {printf("Statement->BREAK SEMICOLON\n");}
+               | RETURN Expression SEMICOLON
+               {printf("Statement->RETURN Expression SEMICOLON\n");}
+               ;
+               
+Loop_Statement:   DO BEGINLOOP Statement SEMICOLON ENDLOOP WHILE Bool_Exp
+                  {printf("Loop_Statement->DO BEGINLOOP Statement SEMICOLON ENDLOOP WHILE Bool_Exp\n");}
+                  | WHILE Bool_Exp BEGINLOOP Statement SEMICOLON ENDLOOP
+                  {printf("Loop_Statement->WHILE Bool_Exp BEGINLOOP Statement SEMICOLON ENDLOOP\n");}
+                  ;
+                  
+Declaration:    IDENTIFIER COLON INTEGER SEMICOLON
+                {printf("Declaration->IDENTIFIER COLON INTEGER SEMICOLON\n");}
+                | IDENTIFIER COLON ARRAY L_SQUARE_BRACKET DIGITS R_SQUARE_BRACKET INTEGER SEMICOLON
+                {printf("Declaration->IDENTIFIER COLON ARRAY L_SQUARE_BRACKET DIGITS R_SQUARE_BRACKET INTEGER SEMICOLON\n");}
+                ;
+                
+Function:     Function IDENTIFIER SEMICOLON BEGIN_PAR Declaration SEMICOLON END_PAR BEGIN_LOC Declaration SEMICOLON END_LOCALS BEGIN_BOD Statement SEMICOLON END_BOD
+              {printf("Function->Function IDENTIFIER SEMICOLON BEGIN_PAR Declaration SEMICOLON END_PAR BEGIN_LOC Declaration SEMICOLON END_LOCALS BEGIN_BOD Statement SEMICOLON END_BOD\n");}
+              ;
+              
+Program:    Function Program
+            {printf("Program->Function Program\n");}
+            ;
+                
+
+    
+        
