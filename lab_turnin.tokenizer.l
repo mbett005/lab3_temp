@@ -33,6 +33,8 @@
     TRU = 288
     FAL = 289
     NOT = 290
+    AND = 291
+    OR = 292
     };
     
     int yyval;
@@ -75,6 +77,8 @@
 "True" {return TRU;}
 "False" {return FAL;}
 "!" {return NOT;}
+"/and" {return AND;}
+"/or" {return OR;}
 \n {return EOL;}
 [\t] {/*ignore whitespace*/}
 . {printf("Mystery character %c\n", *yytext);}
