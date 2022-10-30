@@ -32,6 +32,7 @@
     NEG = 287
     TRU = 288
     FAL = 289
+    NOT = 290
     };
     
     int yyval;
@@ -73,6 +74,7 @@
 "-" {return NEG;}
 "True" {return TRU;}
 "False" {return FAL;}
+"!" {return NOT;}
 \n {return EOL;}
 [\t] {/*ignore whitespace*/}
 . {printf("Mystery character %c\n", *yytext);}
