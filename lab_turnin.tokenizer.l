@@ -36,18 +36,13 @@
 
 %%
 [+-]?[0-9] {yylval = atio{yytext}; return DIGIT;}
-
-
 [+-]?(\.{DIGIT}+)|({DIGIT}+(\.{DIGIT}*)?([eE]?[0-9]+)?) {yyval = atio{yytext}; return DIGITS;}
-
 [a-zA-Z0-9_]*[a-zA-Z0-9]* {return IDENTIFIER;}
-
 "/add" {return ADD;}
 "/sub" {return SUBTRACT;}
 "/mult" {return MULT;}
 "/div" {return DIVI;}
 "/mod" {return MOD;}
-
 "=" {return ASSIGN;}
 "/end" {return BREAK;}
 "#" {return COMMENT;}
@@ -59,7 +54,6 @@
 "/write" {return WRITE;}
 "/read" {return READ;}
 "/lt" {return LESST;}
-
 "/lteq" {return LESSTEQ;}
 "/gt" {return GREATT;}
 "/gteq" {return GREATTEQ;}
@@ -73,7 +67,6 @@
 ":" {return COLON;}
 ";" {return SEMICOLON;}
 "," {return COMMA;}
-
 \n {return EOL;}
 [\t] {/*ignore whitespace*/}
 . {printf("Mystery character %c\n", *yytext);}
