@@ -29,6 +29,7 @@
     COLON = 284,
     SEMICOLON = 285,
     COMMA = 286
+    NEG = 287
     };
     
     int yyval;
@@ -67,6 +68,7 @@
 ":" {return COLON;}
 ";" {return SEMICOLON;}
 "," {return COMMA;}
+"-" {return NEG;}
 \n {return EOL;}
 [\t] {/*ignore whitespace*/}
 . {printf("Mystery character %c\n", *yytext);}
