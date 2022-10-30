@@ -30,6 +30,8 @@
     SEMICOLON = 285,
     COMMA = 286
     NEG = 287
+    TRU = 288
+    FAL = 289
     };
     
     int yyval;
@@ -69,6 +71,8 @@
 ";" {return SEMICOLON;}
 "," {return COMMA;}
 "-" {return NEG;}
+"True" {return TRU;}
+"False" {return FAL;}
 \n {return EOL;}
 [\t] {/*ignore whitespace*/}
 . {printf("Mystery character %c\n", *yytext);}
