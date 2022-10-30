@@ -1,5 +1,11 @@
 %{
    enum yytokentype {
+    BEGIN_PAR = 
+    END_PAR = 
+    BEGIN_LOC = 
+    END_LOC =
+    BEGIN_BOD = 
+    
     ADD = 258,
     SUBTRACT = 259,
     MULT = 260,
@@ -44,6 +50,19 @@
 [+-]?[0-9] {yylval = atio{yytext}; return DIGIT;}
 [+-]?(\.{DIGIT}+)|({DIGIT}+(\.{DIGIT}*)?([eE]?[0-9]+)?) {yyval = atio{yytext}; return DIGITS;}
 [a-zA-Z0-9_]*[a-zA-Z0-9]* {return IDENTIFIER;}
+"/bp" 
+"/ep"
+"/bl"
+"/el"
+"/bb"
+"/eb"
+"/do"
+"/while" 
+"/loop_b"
+"/loop_e"
+"BREAK"
+"RETURN"
+"CONT"
 "/add" {return ADD;}
 "/sub" {return SUBTRACT;}
 "/mult" {return MULT;}
