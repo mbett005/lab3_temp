@@ -1,11 +1,18 @@
 %{
    enum yytokentype {
-    BEGIN_PAR = 
-    END_PAR = 
-    BEGIN_LOC = 
-    END_LOC =
-    BEGIN_BOD = 
-    
+    BEGIN_PAR = 245
+    END_PAR = 246
+    BEGIN_LOC = 247
+    END_LOC = 248
+    BEGIN_BOD = 249
+    END_BOD = 250 
+    DO = 251
+    WHILE = 252
+    LOOP_BEGIN = 253
+    LOOP_END = 254
+    BREAK = 255
+    RETURN = 256
+    CONTINUE = 257
     ADD = 258,
     SUBTRACT = 259,
     MULT = 260,
@@ -50,19 +57,19 @@
 [+-]?[0-9] {yylval = atio{yytext}; return DIGIT;}
 [+-]?(\.{DIGIT}+)|({DIGIT}+(\.{DIGIT}*)?([eE]?[0-9]+)?) {yyval = atio{yytext}; return DIGITS;}
 [a-zA-Z0-9_]*[a-zA-Z0-9]* {return IDENTIFIER;}
-"/bp" 
-"/ep"
-"/bl"
-"/el"
-"/bb"
-"/eb"
-"/do"
-"/while" 
-"/loop_b"
-"/loop_e"
-"BREAK"
-"RETURN"
-"CONT"
+"/bp" {return BEGIN_PAR;}
+"/ep" {return END_PAR;}
+"/bl" {return BEGIN_LOC;}
+"/el" {return END_LOC;}
+"/bb" {return BEGIN_BOD;}
+"/eb" {return END_BOD;}
+"/do" {return DO;}
+"/while" {return WHILE;}
+"/loop_b" {return LOOP_BEGIN;}
+"/loop_e" {return LOOP_END;}
+"BREAK" {return BREAK;}
+"RETURN" {return RETURN;}
+"CONT" {return CONT;}
 "/add" {return ADD;}
 "/sub" {return SUBTRACT;}
 "/mult" {return MULT;}
