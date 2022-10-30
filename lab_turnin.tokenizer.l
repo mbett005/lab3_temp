@@ -60,20 +60,6 @@
 "/read" {return READ;}
 "/lt" {return LESST;}
 
-LESSTEQ "/lteq"
-GREATT "/gt"
-GREATTEQ "/gteq"
-EQUIV ==
-NOTEQ !=
-LOOP "/loop"
-L_PAREN "("
-R_PAREN ")"
-L_SQUARE_BRACKET "["
-R_SQUARE_BRACKET "]"
-COLON ":"
-SEMICOLON ";"
-COMMA ","
-
 "/lteq" {return LESSTEQ;}
 "/gt" {return GREATT;}
 "/gteq" {return GREATTEQ;}
