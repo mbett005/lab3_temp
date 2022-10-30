@@ -48,6 +48,7 @@
     NOT = 290
     AND = 291
     OR = 292
+    ARRAY = 293
     };
     
     int yyval;
@@ -105,6 +106,7 @@
 "!" {return NOT;}
 "/and" {return AND;}
 "/or" {return OR;}
+"/arr" {return ARRAY;}
 \n {return EOL;}
 [\t] {/*ignore whitespace*/}
 . {printf("Mystery character %c\n", *yytext);}
